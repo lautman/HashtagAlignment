@@ -6,7 +6,7 @@
 %% Inputs
 
 %OCT Data
-OCTVolumesFolder = [s3SubjectPath('06','LC') 'OCTVolumes/'];
+OCTVolumesFolder = ['s3://delazerdamatlab/Users/BrainProject/7-2-2020Ganymede20x/'];
 %OCTVolumesFolder = [s3SubjectPath('01') 'OCTVolumes/'];
 
 isUploadToAWS = false; % Set to true if you would like to upload to aws
@@ -29,7 +29,7 @@ scanConfigJson = awsReadJSON(scanConfigPath);
 
 %% Load Volume information
 [~,meta] = yOCTFromTif([OCTVolumesFolder '/VolumeScanAbs/'],'isLoadMetadataOnly',true);  
-zPixelSize_um = diff(meta.z.values(1:2))*1e3; % um/pix
+zPixelSize_um = diff(meta.z.values(1:2))*1e3 % um/pix
 xPixelSize_um = diff(meta.x.values(1:2))*1e3; % um/pix
 
 % Select bScans to load, around the center of the scan as this is the
